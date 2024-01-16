@@ -177,12 +177,32 @@ const clearCompleted = () => {
     todoList.value = todoList.value.filter((todo) => !todo.checked);
     filteredList.value = todoList.value;
     localStorage.setItem("todoList", JSON.stringify(todoList.value));
+    filterTodoList(activeFilter.value);
 };
 
 watch(
     filteredList,
     () => {
-        filteredList.value.length || todoList.value.length > 0 ? (showMessage.value = false) : (showMessage.value = true);
+        filteredList.value.length === 0 || todoList.value.length === 0 ? (showMessage.value = true) : (showMessage.value = false);
+
+        console.log("Filtered List Changed");
+        console.log(filteredList.value.length);
+
+        switch (activeFilter.value) {
+            case "all":
+                message.value = "No Todos!";
+                break;
+            case "active":
+                message.value = "No Active Todos.";
+                break;
+            case "completed":
+                message.value = "No Completed Todos.";
+                break;
+            default:
+                message.value = "No Todos!";
+                break;
+        }
+
         activeItemsLeft.value = todoList.value.filter((todo) => !todo.checked).length;
     },
     {immediate: false, deep: true}
@@ -517,7 +537,7 @@ window.addEventListener("resize", () => {
     text-align: center;
     width: 100%;
     font-size: 0.875rem;
-    color: red;
+    color: var(--list-item-color);
 }
 
 .text--strike {
