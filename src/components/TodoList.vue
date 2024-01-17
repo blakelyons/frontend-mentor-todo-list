@@ -13,7 +13,7 @@
                             v-model="newTodoItem"
                             v-on:keyup.enter="addTodo(newTodoItem)"
                         />
-                        <button class="button add-todo-handler" @click="addTodo(newTodoItem)" :disabled="!newTodoItem">
+                        <button aria-label="Add Todo" class="button add-todo-handler" @click="addTodo(newTodoItem)" :disabled="!newTodoItem">
                             <Icon icon="uil:plus" />
                         </button>
                     </div>
@@ -27,6 +27,7 @@
                     <template #item="{element}">
                         <li class="list-group__item" :data-order="element.order">
                             <button
+                                aria-label="Complete Todo"
                                 :class="`checkbox ${element.checked ? `checkbox--checked` : ``}`"
                                 data-item-id=""
                                 @click="completeTodo(element.order)"
@@ -38,7 +39,7 @@
                             </button>
                             <input type="checkbox" />
                             <span :class="`todo-name ${element.checked ? `text--strike` : ``}`">{{ element.name }}</span>
-                            <button class="button remove-todo-handler" @click="removeTodo(element.order)">
+                            <button aria-label="Remove Todo" class="button remove-todo-handler" @click="removeTodo(element.order)">
                                 <Icon icon="material-symbols-light:close-rounded" />
                             </button>
                         </li>
@@ -50,16 +51,22 @@
                         <span class="todo-list-footer__left--count">{{ activeItemsLeft }} items left</span>
                     </div>
                     <div class="todo-list-footer__center" v-if="windowWidth > 800">
-                        <button :class="`button button--clear ${activeFilter === 'all' ? 'button--active' : ''}`" @click="filterTodoList('all')">
+                        <button
+                            aria-label="Filter All"
+                            :class="`button button--clear ${activeFilter === 'all' ? 'button--active' : ''}`"
+                            @click="filterTodoList('all')"
+                        >
                             All
                         </button>
                         <button
+                            aria-label="Filter Active"
                             :class="`button button--clear ${activeFilter === 'active' ? 'button--active' : ''}`"
                             @click="filterTodoList('active')"
                         >
                             Active
                         </button>
                         <button
+                            aria-label="Filter Completed"
                             :class="`button button--clear ${activeFilter === 'completed' ? 'button--active' : ''}`"
                             @click="filterTodoList('completed')"
                         >
@@ -74,11 +81,25 @@
         </div>
         <footer class="todo-list-footer todo-list-footer--mobile todo-list__wrapper" v-if="windowWidth < 800">
             <div class="todo-list-footer__center">
-                <button :class="`button button--clear ${activeFilter === 'all' ? 'button--active' : ''}`" @click="filterTodoList('all')">All</button>
-                <button :class="`button button--clear ${activeFilter === 'active' ? 'button--active' : ''}`" @click="filterTodoList('active')">
+                <button
+                    aria-label="Filter All"
+                    :class="`button button--clear ${activeFilter === 'all' ? 'button--active' : ''}`"
+                    @click="filterTodoList('all')"
+                >
+                    All
+                </button>
+                <button
+                    aria-label="Filter Active"
+                    :class="`button button--clear ${activeFilter === 'active' ? 'button--active' : ''}`"
+                    @click="filterTodoList('active')"
+                >
                     Active
                 </button>
-                <button :class="`button button--clear ${activeFilter === 'completed' ? 'button--active' : ''}`" @click="filterTodoList('completed')">
+                <button
+                    aria-label="Filter Completed"
+                    :class="`button button--clear ${activeFilter === 'completed' ? 'button--active' : ''}`"
+                    @click="filterTodoList('completed')"
+                >
                     Completed
                 </button>
             </div>

@@ -3,6 +3,9 @@
     <main>
         <TodoList />
     </main>
+    <footer class="attribution">
+        <a href="https://www.blakelyons.com" target="_blank">Blake Lyons</a>
+    </footer>
 </template>
 
 <script setup>
