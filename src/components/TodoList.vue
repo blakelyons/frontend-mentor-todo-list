@@ -74,7 +74,7 @@
                         </button>
                     </div>
                     <div class="todo-list-footer__right">
-                        <button class="button button--clear" @click="clearCompleted">Clear Completed</button>
+                        <button class="button button--clear" aria-label="Clear Completed Button" @click="clearCompleted">Clear Completed</button>
                     </div>
                 </footer>
             </div>
