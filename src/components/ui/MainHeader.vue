@@ -2,7 +2,7 @@
     <header class="main-header" :class="props.theme === `light` ? `main-header--light-${headerBg}` : `main-header--dark-${headerBg}`">
         <div class="wrapper">
             <h1>TODO</h1>
-            <button class="button button--clear" @click="emit('updateTheme')">
+            <button class="button button--clear" aria-label="Update Theme Button" @click="emit('updateTheme')">
                 <IconSun v-if="props.theme == `dark`" />
                 <IconMoon v-else />
             </button>
